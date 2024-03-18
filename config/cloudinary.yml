@@ -1,0 +1,11 @@
+development: 
+  cloud_name: "dab67v22v"
+  api_key: "256179982496262"
+  api_secret: "TfEdszNHTywkdf99pvq5x9sk2Pg"
+  secure: true
+
+production:
+  cloud_name: "dab67v22v"
+  api_key: "256179982496262"
+  api_secret: "TfEdszNHTywkdf99pvq5x9sk2Pg"
+  secure: true

@@ -9,12 +9,23 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+
+  config.jwt do |jwt|
+    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
+    jwt.dispatch_requests = [
+      ['POST', %r{^/login$}]
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/logout$}]
+    ]
+    jwt.expiration_time = 1.day.to_i
+  end
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'c478ef726eefb058a8f44f9183161c8198db28a806fc68b16b6037013968c0ecf8f72fc927678de9be3d76cd4d4156f48d7a239b5487fdc07bab85c80a488c8c'
+  # config.secret_key = '6520a24a1dad1b382d7c5c2d37eeb21604ab81463299462de38d2e4d8ef250d2edd0ca9cbafbeb3d3b3c492a7aef9e31b77fb2661e9e07d643ec247cc4ca4117'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +137,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '843a029f1df9248525922043568897cf7f137c0ca851424d05e1232255e45185249d070c59bbfe747216f00afb9b52a082bb9fbc2e79793e2e5cbf79f4e6a489'
+  # config.pepper = 'f6eac7ba22ac9ec3a4bffc9c912ce90c2940b8283c47b90e52bcb60ee02b8ee8aaf1e16596fff8d39f471cc037c33ca8fc7c5c335ec133e093d49e1431c3341f'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -263,7 +274,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html, :turbo_stream]
+  config.navigational_formats = []
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete

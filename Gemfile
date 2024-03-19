@@ -30,8 +30,11 @@ gem 'cloudinary'
 gem "rolify"
 gem "faker"
 gem 'rails-controller-testing'
+gem 'devise-jwt'
 # gem 'rails-api'
 #gem 'devise_token_auth'
+gem 'jwt_sessions'
+gem 'rack-cors'
 
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 

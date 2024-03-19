@@ -1,5 +1,5 @@
 class Api::V1::ArticlesController < ApplicationController
-
+    #skip_before_action :verify_authenticity_token
 
     def index
         @articles = Article.all
@@ -11,6 +11,7 @@ class Api::V1::ArticlesController < ApplicationController
     end
     
     def create
+        debugger
         @article = current_user.articles.new(article_params)
     
         if @article.save

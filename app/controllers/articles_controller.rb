@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    
     @article = current_user.articles.new(article_params)
     authorize @article
 

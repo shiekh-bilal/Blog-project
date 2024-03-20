@@ -27,6 +27,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 gem 'cloudinary'
+gem 'rack-cors'
 gem "rolify"
 gem "faker"
 gem 'rails-controller-testing'
@@ -34,6 +35,7 @@ gem 'rails-controller-testing'
 #gem 'devise_token_auth'
 #gem 'devise_token_auth', '~> 1.2', '>= 1.2.2'
 gem 'devise_token_auth', '~> 1.2', '>= 1.2.2'
+gem 'omniauth', '~> 2.1', '>= 2.1.2'
 
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 

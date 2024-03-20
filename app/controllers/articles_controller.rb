@@ -1,11 +1,11 @@
 class ArticlesController < ApplicationController
-  http_basic_authenticate_with name: "dhh", password: "secret",
-  except: [:index, :show]
-  #before_action :authenticate_user!, except: [:index, :show, :home]
-  #before_action :correct_user, only: [:edit, :update, :destroy]
-  
-  def home
-  end
+  http_basic_authenticate_with name: 'dhh', password: 'secret',
+                               except: %i[index show]
+  # before_action :authenticate_user!, except: [:index, :show, :home]
+  # before_action :correct_user, only: [:edit, :update, :destroy]
+
+  def home; end
+
   def index
     @articles = Article.all
   end
@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to @article
     else
-      render :new , status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -52,8 +52,8 @@ class ArticlesController < ApplicationController
 
     redirect_to root_path, status: :see_other
   end
-  
-private
+
+  private
 
   def article_params
     params.require(:article).permit(:title, :body, :status, :avatar)
@@ -61,7 +61,6 @@ private
 
   def correct_user
     @article = current_user.articles.find_by(id: params[:id])
-    redirect_to articles_path, notice: "Not Authorized to Edit this article" if @article.nil?
+    redirect_to articles_path, notice: 'Not Authorized to Edit this article' if @article.nil?
   end
-  
 end

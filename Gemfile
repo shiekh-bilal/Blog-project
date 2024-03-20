@@ -31,6 +31,7 @@ gem 'rack-cors'
 gem "rolify"
 gem "faker"
 gem 'rails-controller-testing'
+gem 'rubocop', '~> 1.62', '>= 1.62.1'
 # gem 'rails-api'
 #gem 'devise_token_auth'
 #gem 'devise_token_auth', '~> 1.2', '>= 1.2.2'

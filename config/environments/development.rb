@@ -64,6 +64,16 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'sandbox.smtp.mailtrap.io',
+    port: 2525, # or your Mailtrap port
+    domain: 'example.com', # your domain
+    user_name: '19df018e29e282',
+    password: 'e6da3bc9918a8a',
+    authentication: :plain
+  }
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   http_basic_authenticate_with name: "dhh", password: "secret",
   except: [:index, :show]
   #before_action :authenticate_user!, except: [:index, :show, :home]
-  #before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   
   def home
   end
@@ -24,6 +24,7 @@ class ArticlesController < ApplicationController
     authorize @article
 
     if @article.save
+      ArticleMailer.new_article_notification(@article).deliver_now
       redirect_to @article
     else
       render :new , status: :unprocessable_entity
@@ -49,6 +50,8 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     authorize @article
     @article.destroy
+
+    ArticleMailer.article_deleted_notification(@article, current_user).deliver_now
 
     redirect_to root_path, status: :see_other
   end
